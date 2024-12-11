@@ -1,5 +1,5 @@
 # gestaoapp
-A intenção é gerar uma ferramenta para gestão com aplicações essenciais para o dia a dia de uma pequena empresa, sendo totalmente em nuvem e responsivo
+A intenção é gerar uma ferramenta para gestão com aplicações essenciais para o dia a dia de uma pequena empresa, sendo totalmente em nuvem e responsivo, esse projeto inicialmente foi para atender um cliente pequeno construtor, com a finalidade de auxiliá-lo nas atividades diárias, para que assim a produtividade e a gestão fossem mais eficientes. Esse trabalho encontra-se em constante crescimento, aos poucos vou implantando novas funcionalidades. 
 ## Funcionalidades:
 ### Funcionalidades da aplicação gerenciamento de tarefas
 **Funcionalidade de Excluir**<br>
