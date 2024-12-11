@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Entradas</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      border: none;
+    }
+
+    .btn-danger:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <!--menu-->
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">CS Construções</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="cadastro.html">Cadastro</a>
+          <a class="nav-link" href="lista_tarefas.php">Minhas tarefas</a>
+          <a class="nav-link" href="consultas_entradas.html">Entradas</a>
+          <a class="nav-link" href="consultas_saidas.html">Saídas</a>
+          <a class="nav-link" href="totais.php">Totais</a>
+
+          <!-- Submenu (Dropdown) -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Inventários
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="add_material.php">Adicionar Material </a></li>
+              <li><a class="dropdown-item" href="lista_materiais.php">Listar materiais</a></li>
+              <li><a class="dropdown-item" href="add_material_estoque.php">Adicionar Estoque</a></li>
+              <li><a class="dropdown-item" href="lista_materiais_estoque.php">Listar Estoque</a></li>
+              <li><a class="dropdown-item" href="add_ativo.php">Adicionar Ativo</a></li>
+              <li><a class="dropdown-item" href="lista_ativos.php">Listar Ativos</a></li>
+              <li><a class="dropdown-item" href="add_produto.php">Adicionar Produto</a></li>
+              <li><a class="dropdown-item" href="lista_produtos.php">Listar Produtos</a></li>
+            </ul>
+          </li>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!--fim do menu-->
+  <h1 class="text-center my-4 text-primary">Consulta de Entradas</h1>
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-12 col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Consulta de Entradas por Dia</h5>
+            <form method="post" action="consulta_dia_entradas.php">
+              <label for="data" class="form-label">Selecione a data:</label>
+              <input type="date" id="data" name="data" class="form-control" required><br>
+              <input type="submit" value="Consultar" class="btn btn-danger w-100">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Consulta de Entradas por Mês</h5>
+            <form method="post" action="consulta_por_mes_entradas.php">
+              <label for="mes" class="form-label">Mês:</label>
+              <select id="mes" name="mes" class="form-select" required>
+                <option value="">Selecione o mês</option>
+                <option value="1">Janeiro</option>
+                <option value="2">Fevereiro</option>
+                <option value="3">Março</option>
+                <option value="4">Abril</option>
+                <option value="5">Maio</option>
+                <option value="6">Junho</option>
+                <option value="7">Julho</option>
+                <option value="8">Agosto</option>
+                <option value="9">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+              </select>
+              <label for="ano" class="form-label mt-2">Ano:</label>
+              <input type="number" id="ano" name="ano" class="form-control" required min="2000" max="2100"><br>
+              <input type="submit" value="Consultar" class="btn btn-danger w-100">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Consulta por Ano</h5>
+            <form method="post" action="consulta_por_ano_entradas.php">
+              <label for="ano" class="form-label">Ano:</label>
+              <input type="number" id="ano" name="ano" class="form-control" required min="2000" max="2100"><br>
+              <input type="submit" value="Consultar" class="btn btn-danger w-100">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <a href="painel.html" class="btn btn-danger mt-4">Painel</a>
+    <!--fim do container-->
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

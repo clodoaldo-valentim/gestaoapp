@@ -1,0 +1,58 @@
+{
+  "name": "CS Controle Financeiro",
+  "short_name": "Controle",
+  "icons": [
+    {
+      "src": "assets/logos/128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logos/144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logos/152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logos/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logos/256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logos/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/cs/",
+  "display": "standalone",
+  "background_color": "#f4b352",
+  "theme_color": "#ef8f10",
+  "description": "Este aplicativo tem a finalidade de permitir que a MJ possa gerir as doações de óleo, bem como gerar engajamento entre os doadores por meio da gameficação.",
+  "id": "Controle",
+  "categories": [
+    "negocios",
+    "produtividade",
+    "social",
+    "utilities",
+    "weather"
+  ],
+  "orientation": "portrait",
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://aprendaaquicursos/cs/manifest.json"
+    }
+  ],
+  "prefer_related_applications": false
+}

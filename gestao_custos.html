@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Custos de Produção</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Menu de Navegação -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Gestão de Custos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#materiais">Materiais</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mao-de-obra">Mão de Obra</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#custos">Cálculo de Custos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <!-- Seção de Materiais -->
+        <div id="materiais" class="mb-5">
+            <h2 class="text-primary">Cadastro de Materiais</h2>
+            <form action="add_material_custo.php" method="post" class="row g-3">
+                <div class="col-md-6">
+                    <label for="material" class="form-label">Nome do Material</label>
+                    <input type="text" class="form-control" id="material" name="material" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="custo" class="form-label">Custo por Unidade</label>
+                    <input type="number" class="form-control" id="custo" name="custo" required step="0.01">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Adicionar Material</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Seção de Mão de Obra -->
+        <div id="mao-de-obra" class="mb-5">
+            <h2 class="text-primary">Cadastro de Mão de Obra</h2>
+            <form action="add_mao_obra.php" method="post" class="row g-3">
+                <div class="col-md-6">
+                    <label for="colaborador" class="form-label">Nome do Colaborador</label>
+                    <input type="text" class="form-control" id="colaborador" name="colaborador" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="custo_hora" class="form-label">Custo por Hora</label>
+                    <input type="number" class="form-control" id="custo_hora" name="custo_hora" required step="0.01">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Adicionar Colaborador</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Seção de Cálculo de Custos -->
+        <div id="custos">
+            <h2 class="text-primary">Cálculo de Custos</h2>
+            <form action="calcular_custos.php" method="post" class="row g-3">
+                <div class="col-md-6">
+                    <label for="produto" class="form-label">Produto</label>
+                    <input type="text" class="form-control" id="produto" name="produto" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="materiais_usados" class="form-label">Materiais Usados (em unidades)</label>
+                    <input type="number" class="form-control" id="materiais_usados" name="materiais_usados" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="horas_trabalhadas" class="form-label">Horas Trabalhadas</label>
+                    <input type="number" class="form-control" id="horas_trabalhadas" name="horas_trabalhadas" required
+                        step="0.01">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Calcular Custo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
