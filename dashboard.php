@@ -1,3 +1,26 @@
+<?php
+// Conexão com o banco de dados
+$servidor = "localhost";
+$usuario = "root"; // Substituir pelo usuário do banco
+$senha = "";       // Substituir pela senha do banco
+$banco = "construcao";
+
+$conn = new mysqli($servidor, $usuario, $senha, $banco);
+
+// Verificar a conexão
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
+}
+
+// Consultas para obter os dados
+$totalContasPagar = $conn->query("SELECT SUM(valor) as total FROM contas where tipo = 'pagar'")->fetch_assoc()['total'] ?? 0;
+$totalContasReceber = $conn->query("SELECT SUM(valor) as total FROM contas where tipo = 'receber'")->fetch_assoc()['total'] ?? 0;
+$totalPagas = $conn->query("SELECT COUNT(*) as total FROM contas WHERE situacao = 'paga'")->fetch_assoc()['total'] ?? 0;
+$totalAPendentes = $conn->query("SELECT COUNT(*) as total FROM contas WHERE situacao = 'pendente'")->fetch_assoc()['total'] ?? 0;
+
+$conn->close();
+?>
+
 <!doctype html>
 <html lang="pt-br">
 
@@ -10,7 +33,6 @@
   <style>
     body {
       background-color: #f8f9fa;
-      align-items: flex-start
     }
 
     /* Navbar */
@@ -36,7 +58,7 @@
 
     .card-title {
       font-weight: bold;
-      color: #007bff;
+      color:rgb(245, 247, 249);
     }
 
     /* Dropdown Menu */
@@ -46,8 +68,7 @@
     }
   </style>
 </head>
-
-<body>
+<<body>
   <!-- Navbar Superior -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid">
@@ -92,80 +113,51 @@
       </div>
     </div>
   </nav>
-  <!-- Conteúdo Principal -->
-  <div class="container mt-5 pt-4">
-    <h1 class="text-primary mb-4">Painel Principal</h1>
-    <div class="row g-4">
-      <!-- Card Entradas -->
-      <div class="col-md-6">
-        <div class="card">
-        <!-- <img src="img/entradas.jpg" class="card-img-top" alt="Entradas">--> 
-          <div class="card-body">
-            <h5 class="card-title">Gestão de Entradas</h5>
-            <p class="card-text">Cadastre e consulte entradas financeiras.</p>
-            <a href="entradas.html" class="btn btn-primary"><i class="bi bi-box-arrow-in-down"></i> Adicionar</a>
-            <a href="consultas_entradas.html" class="btn btn-primary"><i class="bi bi-search"></i> Consultar</a>
-          </div>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Dashboard</h1>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card text-white bg-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Contas a Pagar</h5>
+                        <p class="card-text fs-3">R$ <?= number_format($totalContasPagar, 2, ',', '.') ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card text-white bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Contas a Receber</h5>
+                        <p class="card-text fs-3">R$ <?= number_format($totalContasReceber, 2, ',', '.') ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card text-white bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title">Pagas</h5>
+                        <p class="card-text fs-3"><?= $totalPagas ?> contas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card text-white bg-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">Pedentes</h5>
+                        <p class="card-text fs-3"><?= $totalAPendentes ?> contas</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <!-- Card Saídas -->
-      <div class="col-md-6">
-        <div class="card">
-          <!--  <img src="img/saidas.jpg" class="card-img-top" alt="Saídas"> -->
-          <div class="card-body">
-            <h5 class="card-title">Gestão de Saídas</h5>
-            <p class="card-text">Registre e acompanhe as saídas do financeiro.</p>
-            <a href="saidas.html" class="btn btn-primary"><i class="bi bi-box-arrow-up"></i> Adicionar</a>
-            <a href="consultas_saidas.html" class="btn btn-primary"><i class="bi bi-search"></i> Consultar</a>
-          </div>
-        </div>
-      </div>
-      <!-- Card Gráficos de Entradas -->
-      <div class="col-md-6">
-        <div class="card">
-           <!-- <img src="img/grafico3.jpg" class="card-img-top" alt="Gráficos de Entradas">-->
-          <div class="card-body">
-            <h5 class="card-title">Gráficos de Entradas</h5>
-            <p class="card-text">Visualize dados detalhados das entradas em gráficos.</p>
-            <a href="painel_graficos_entradas.html" class="btn btn-primary"><i class="bi bi-bar-chart"></i> Ver Gráficos</a>
-          </div>
-        </div>
-      </div>
-      <!-- Card Gráficos de Saídas -->
-      <div class="col-md-6">
-        <div class="card">
-          <!-- <img src="img/grafico4.jpg" class="card-img-top" alt="Gráficos de Saídas">-->
-          <div class="card-body">
-            <h5 class="card-title">Gráficos de Saídas</h5>
-            <p class="card-text">Acompanhe as saídas com gráficos interativos.</p>
-            <a href="painel_graficos_saidas.html" class="btn btn-primary"><i class="bi bi-bar-chart-line"></i> Ver Gráficos</a>
-          </div>
-        </div>
-      </div>
-      <!--Card Gestão de contas-->
-      <div class="col-md-6" style="margin-bottom: 50px;">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Gestão de Contas</h5>
-            <p class="card-text">Aqui você pode gerir toas as suas contas a pagar e a receber</p>
-            <a href="gestao_contas.php" class="btn btn-primary"><i class="bi bi-bar-chart-line"></i>Acesse suas contas</a>
-          </div>
-        </div>
-      </div>
-      <!--Relatórios em pdf-->
-      <div class="col-md-6" style="margin-bottom: 50px;">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Relatórios em PDF</h5>
-            <p class="card-text">Neste espaço você gerar relatórios em PDF com apenas um clique</p>
-            <a href="relatorios_pdf.html" class="btn btn-primary"><i class="bi bi-bar-chart-line"></i>Gerar Relatórios</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+        <a href="gestao_contas.php" class="btn btn-primary mt-3">Voltar</a>
+        <a href="painel.html" class="btn btn-danger mt-3">Painel</a>
 
+    </div>
+
+    <footer class="text-center py-3 bg-light">
+        <p class="mb-0">© <?= date('Y') ?> Gestão Financeira. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

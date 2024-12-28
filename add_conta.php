@@ -109,40 +109,36 @@
   <!--fim do menu-->
     <div class="container">
 <?php
+// Conexão com o banco de dados
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "construcao";
 
-// Criar conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificar conexão
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-// Obter dados do formulário
-$material = $_POST['material'];
-$custo = $_POST['custo'];
+// Recebe os dados do formulário
+$descricao = $_POST['descricao'];
+$tipo = $_POST['tipo'];
+$valor = $_POST['valor'];
+$vencimento = $_POST['vencimento'];
 
-// Inserir dados na tabela "materiais"
-$query = "INSERT INTO materiais_custos (nome, custo_unidade) VALUES (?, ?)";
+// Inserção no banco de dados
+$query = "INSERT INTO contas (descricao, tipo, valor, vencimento) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($query);
+$stmt->bind_param("ssds", $descricao, $tipo, $valor, $vencimento);
 
-if ($stmt) {
-    $stmt->bind_param("sd", $material, $custo); // "sd" indica string e double
-    if ($stmt->execute()) {
-        echo "Material cadastrado com sucesso! <a href='gestao_custos.html'>Voltar</a>";
-    } else {
-        echo "Erro ao cadastrar material: " . $stmt->error;
-    }
-    $stmt->close();
+if ($stmt->execute()) {
+    echo "Conta adicionada com sucesso! <a href='gestao_financeira.html'>Voltar</a>";
 } else {
-    echo "Erro na preparação da consulta: " . $conn->error;
+    echo "Erro ao adicionar conta: " . $stmt->error;
 }
 
-// Fechar conexão
+$stmt->close();
 $conn->close();
 ?>
 </div>
